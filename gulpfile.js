@@ -6,9 +6,12 @@ var concat = require('gulp-concat');
 var runSequence = require('run-sequence');
 var stylus = require('gulp-stylus');
 var rename = require('gulp-rename');
+var path = require('path');
+
+var JS = ['src/js/**/*.js', 'src/jsx/**/*.jsx'];
 
 gulp.task('6to5', function() {
-  gulp.src(['src/js/**/*.js', 'src/jsx/**/*.jsx'])
+  gulp.src(JS)
     .pipe(sourcemaps.init())
     .pipe(to5({
       modules: 'amd'
@@ -19,14 +22,19 @@ gulp.task('6to5', function() {
     .pipe(gulp.dest('dist/js/'));
 })
 
-gulp.task('stylus', function() {
-  return gulp.src(['src/stylus/*.styl'])
+gulp.task('styles', function() {
+  return gulp.src(['src/stylus/*.styl', 'src/css/**/*.css'])
     .pipe(sourcemaps.init())
     .pipe(stylus({
       //linenos: true
     }))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist/css/'));
+});
+
+gulp.task('fonts', function() {
+  gulp.src('src/fonts/**')
+    .pipe(gulp.dest('dist/fonts/'));
 });
 
 //
@@ -36,19 +44,25 @@ gulp.task('copy', function() {
 });
 
 gulp.task('buildlib', function() {
-  gulp.src('bower_components/jquery/dist/*')
-    .pipe(gulp.dest('dist/lib/jquery/'));
-
-  gulp.src('bower_components/requirejs/require.js')
-    .pipe(gulp.dest('dist/lib/requirejs/'));
+  var libs = {
+    'jquery': 'dist/*',
+    'requirejs': 'require.js',
+    'react': '*.js',
+    'semantic-ui': 'dist/**'
+  };
+  for (var name in libs) {
+    var src = path.join('bower_components', name, libs[name]);
+    var dest = path.join('dist/lib', name);
+    gulp.src(src).pipe(gulp.dest(dest));
+  }
 })
 
 // Watch Files For Changes
 gulp.task('watch', function() {
   gulp.watch('gulpfile.js', ['default']);
 
-  gulp.watch(['src/js/**/*.js', 'src/jsx/**/*.jsx'], ['6to5']);
-  gulp.watch('src/stylus/**/*.styl', ['stylus']);
+  gulp.watch(JS, ['6to5']);
+  gulp.watch(['src/stylus/**/*.styl', 'src/css/**/*.css'], ['styles']);
   //gulp.watch('src/lib/**', ['copy']);
   gulp.watch('bower_components/**', ['buildlib']);
 });
@@ -64,5 +78,5 @@ gulp.task('clean', function() {
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function(cb) {
   //runSequence('styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
-  runSequence(['6to5', 'stylus', 'buildlib'], cb);
+  runSequence(['6to5', 'styles', 'fonts', 'buildlib'], cb);
 });

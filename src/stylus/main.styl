@@ -1,17 +1,41 @@
 @require 'includes/settings.styl'
 
-body
-  margin: 0
-  padding: 0
-
-.content-navigation
-  border-color: $blue
-  color: $blue - 9%
- 
-.border
-  padding: ($margin/2)
-  margin: ($margin/2)
-  border-color: $blue
+//body
+//  padding: 50px
+//  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+//a
+//  color: #00B7FF
 
 
-@import 'components/button.styl'
+#card-container
+  max-width: 440px
+  margin: 0 auto
+  .loading
+    min-height:200px
+
+.bs-card-list
+  padding: 1em
+  .bs-card
+    padding: 1em
+    &.selected
+      -webkit-box-shadow: 0 0 10px rgba(255, 0, 0, 1)
+    .pricetag
+      .free
+        color: #f00;
+      .delete
+        text-decoration: line-through
+      .bid
+        font-weight: bold
+    .labels
+      .out
+        color: #f00
+    .bidder
+      strong
+        margin-right: 0.25em
+        margin-left: 0.25em
+
+.bid-button
+  .input
+    margin-right: 0.25em
+    input
+      max-width: 5em

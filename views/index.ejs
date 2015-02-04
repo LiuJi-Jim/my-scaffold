@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookshelf</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link rel="stylesheet" href="/dist/lib/semantic-ui/semantic.css">
+    <link rel="stylesheet" href="/dist/css/main.css" />
+  </head>
+  <body>
+    <h1 class="ui header">Bookshelf</h1>
+    <p>Welcome to <%= title %></p>
+
+    <div id="card-container"></div>
+
+    <div id="tester"></div>
+
+    <div id="test-wrapper"></div>
+
+    <div id="dropdown-wrapper"></div>
+
+    <script src="/dist/lib/requirejs/require.js"></script>
+    <!--<script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/2-0-2/esl.source.js"></script>-->
+    <script>
+    require.config({
+      baseUrl: '/dist/js/',
+      paths: {
+        'jquery': '../lib/jquery/jquery.min',
+        'semantic-ui': '../lib/semantic-ui/semantic',
+        'react': '../lib/react/react-with-addons'
+      }
+    });
+    require(['jquery', 'semantic-ui', 'react', 'main']);
+    </script>
+  </body>
+</html>

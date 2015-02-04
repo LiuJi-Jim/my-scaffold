@@ -1,0 +1,45 @@
+[
+  {
+    "id": "1",
+    "name": "数据结构与算法JavaScript描述",
+    "publish": "人民邮电出版社",
+    "author[]": "Michael McMillan",
+    "translator[]": [
+      "王群峰",
+      "杜欢"
+    ],
+    "type": "book",
+    "cover": "http://img11.360buyimg.com/n1/jfs/t223/243/1639658472/413040/2c5c7756/53fd2e61Nd737999a.jpg",
+    "originalPrice": "49",
+    "price": "0",
+    "expires": "Tue Feb 03 2015 23:15:37 GMT+0800 (中国标准时间)",
+    "bidder": "Jim Liu"
+  },
+  {
+    "id": 2,
+    "name": "深入浅出node.js",
+    "publish": "人民邮电出版社",
+    "author": [
+      "朴灵"
+    ],
+    "type": "book",
+    "cover": "http://img10.360buyimg.com/n1/g14/M02/00/13/rBEhV1KEd8YIAAAAAAXXX-3RZXsAAFm6wFisqIABdd3211.jpg",
+    "originalPrice": 69,
+    "price": 30,
+    "expires": "Tue Feb 03 2015 23:15:37 GMT+0800 (中国标准时间)",
+    "bidder": "Jim Liu",
+    "out": true
+  },
+  {
+    "id": "3",
+    "name": "Elliot Fu",
+    "type": "music-dvd",
+    "cover": "elliot.jpg",
+    "year": "2011",
+    "originalPrice": "230",
+    "price": "200",
+    "bid": "220",
+    "bidder": "赵日天",
+    "out": false
+  }
+]
